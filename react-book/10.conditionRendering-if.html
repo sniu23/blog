@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      function UserGreeting(props) {
+        return <h1>Welcome back!</h1>;
+      }
+
+      function GuestGreeting(props) {
+        return <h1>Please sign up.</h1>;
+      }
+
+      function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+        if (isLoggedIn) {
+          return <UserGreeting />;
+        }
+        return <GuestGreeting />;
+      }
+
+      ReactDOM.render(
+        // Try changing to isLoggedIn={true}:
+        <Greeting isLoggedIn={true} />,
+        document.getElementById('root')
+      );
+      
+    </script>
+  </body>
+</html>

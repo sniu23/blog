@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      function ListItem(props) {
+        // 正确！这里不需要指定 key ：
+        return <li>{props.value}</li>;
+      }
+
+      function NumberList(props) {
+        const numbers = props.numbers;
+        const listItems = numbers.map((number) =>
+          // 正确！key 应该在这里被指定
+          <ListItem key={number.toString()}
+                    value={number} />
+
+        );
+        return (
+          <ul>
+            {listItems}
+          </ul>
+        );
+      }
+
+      const numbers = [1, 2, 3, 4, 5];
+      ReactDOM.render(
+        <NumberList numbers={numbers} />,
+        document.getElementById('root')
+      );
+      
+    </script>
+  </body>
+</html>
