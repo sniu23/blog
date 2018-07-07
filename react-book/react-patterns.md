@@ -59,8 +59,38 @@ function App() {
 
 # 事件
 
+- 传入的`属性`可以是任何东西，包括`函数`，我们可以使用它来发送数据或触发操作。
+
+**important**
+```jsx
+// <NameField />，它接受用户的输入并能将结果发送出去。
+function NameField({ valueUpdated }) {
+  return (
+    <input
+      onChange={ event => valueUpdated(event.target.value) } />
+  );
+};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { name: '' };
+  }
+  render() {
+    return (
+      <div>
+        <NameField
+          valueUpdated={ name => this.setState({ name }) } />
+        Name: { this.state.name }
+      </div>
+    );
+  }
+};
+```
+
 - **受控组件** ：避免使用`refs`来让浏览器来处理用户的输入(这种方式称为`非受控输入`）
 
+**important**
 ```jsx
 // 受控组件
 class App extends React.Component {
@@ -133,6 +163,7 @@ export default function Navigation() {
 
 1. 使用 `children`
 
+**important**
 ```jsx
 function TodoList({ todos, children }) {
   return (
